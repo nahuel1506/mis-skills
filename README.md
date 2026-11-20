@@ -2,34 +2,48 @@
 
 Skills en español para Codex. Podés entrar en cualquier etapa, desde aclarar una idea hasta revisar el resultado.
 
-## Instalar
+## Instalar y actualizar
 
-Ejecutá los comandos desde la raíz de tu proyecto con Node.js 22.20 o posterior. En PowerShell también podés usar `npx.cmd`. [Skills CLI](https://github.com/vercel-labs/skills/blob/main/docs/commands.md#skills-add)
+### Ingeniería por carpetas
 
-**Ingeniería y sus referencias**
+Ejecutá este bloque en PowerShell desde la raíz del proyecto, con GitHub CLI y una sesión iniciada (`gh auth login`). Instala las dos categorías en `.agents/skills/ingenieria/` y `.agents/skills/referencias/`. Ajustá `$categorias` para instalar otras carpetas de la colección. [Instalación con GitHub CLI](https://cli.github.com/manual/gh_skill_install)
 
-```bash
-npx skills add nahuel1506/mis-skills/skills/ingenieria -a codex --skill "*" -y
-npx skills add nahuel1506/mis-skills/skills/referencias -a codex --skill "*" -y
+```powershell
+$origen = 'nahuel1506/mis-skills'
+$categorias = 'ingenieria', 'referencias'
+$rutas = gh api "repos/$origen/git/trees/main?recursive=1" --jq '.tree[].path'
+if ($LASTEXITCODE -ne 0) { throw 'No se pudo consultar la colección' }
+
+foreach ($ruta in ($rutas -match '^skills/[^/]+/[^/]+/SKILL\.md$')) {
+  $categoria, $nombre = ($ruta -split '/')[1, 2]
+  if ($categoria -notin $categorias) { continue }
+  $destino = ".agents/skills/$categoria"
+  if (Test-Path -LiteralPath "$destino/$nombre/SKILL.md") { continue }
+  gh skill install $origen $ruta --dir $destino
+  if ($LASTEXITCODE -ne 0) { throw "No se pudo instalar $nombre" }
+}
 ```
 
-El segundo comando trae las referencias que consultan las skills de ingeniería. Aprendizaje y productividad se instalan por separado.
+Para actualizar las dos categorías desde la raíz del proyecto, ejecutá estos comandos.
 
-**Instalación por nombre**
+```powershell
+gh skill update --all --dir .agents/skills/ingenieria
+gh skill update --all --dir .agents/skills/referencias
+```
+
+Volvé a ejecutar el bloque de instalación para sumar skills nuevas a esas carpetas. [Actualización con GitHub CLI](https://cli.github.com/manual/gh_skill_update)
+
+Si migrás desde una instalación plana de Skills CLI, retirala primero con `npx skills remove nahuel1506/mis-skills` en la raíz de ese proyecto.
+
+### Instalación por nombre con Skills CLI
 
 ```bash
 npx skills add nahuel1506/mis-skills -a codex --skill disenar-solucion -y
 ```
 
-Usá uno o varios nombres del catálogo. Por ejemplo, `--skill aprender` instala la skill de aprendizaje y `--skill "*"` instala toda la colección. Agregá `-g` para usar la selección en todos tus proyectos. También podés copiar la carpeta completa de una skill a `.agents/skills/`. [Skills en Codex](https://learn.chatgpt.com/docs/build-skills)
+Requiere Node.js 22.20 o posterior. Usá `npx.cmd` en PowerShell si hace falta. Podés indicar varios nombres, elegir `--skill "*"` para toda la colección o agregar `-g` para instalar en todos tus proyectos. [Skills CLI](https://github.com/vercel-labs/skills/blob/main/docs/commands.md#skills-add)
 
-## Actualizar
-
-```bash
-npx skills update --project
-```
-
-El comando actualiza las skills que instalaste con Skills CLI en el proyecto. Usá `--global` si instalaste con `-g`. Para incorporar nuevas skills de una categoría, repetí su comando de instalación.
+Para actualizar esta instalación, usá `npx skills update --project` o `npx skills update --global` si instalaste con `-g`.
 
 Si mantenés la colección, editá el `SKILL.md` enlazado en el catálogo, publicá el cambio y actualizá desde los proyectos que lo usen.
 
