@@ -1,0 +1,5 @@
+interface:
+  display_name: "Aclarar idea"
+  short_description: Precisar un plan mediante una entrevista profunda
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Especificar"
+  short_description: Convertir una conversación en una especificación
+policy:
+  allow_implicit_invocation: false

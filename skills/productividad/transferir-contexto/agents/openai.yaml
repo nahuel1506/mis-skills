@@ -1,0 +1,5 @@
+interface:
+  display_name: "Transferir contexto"
+  short_description: Resumir una conversación para continuar en otra sesión
+policy:
+  allow_implicit_invocation: false

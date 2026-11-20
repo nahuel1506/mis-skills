@@ -1,0 +1,3 @@
+interface:
+  display_name: "Diagnosticar errores"
+  short_description: Diagnosticar errores difíciles y regresiones

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Retrospectiva"
+  short_description: Revisar una sesión de programación y proponer mejoras
+policy:
+  allow_implicit_invocation: false

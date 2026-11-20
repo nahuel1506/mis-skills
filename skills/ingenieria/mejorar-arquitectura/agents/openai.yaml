@@ -1,0 +1,5 @@
+interface:
+  display_name: "Mejorar arquitectura"
+  short_description: Encontrar mejoras arquitectónicas y analizarlas
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Dividir en tareas"
+  short_description: Dividir un plan en tareas pequeñas con dependencias
+policy:
+  allow_implicit_invocation: false

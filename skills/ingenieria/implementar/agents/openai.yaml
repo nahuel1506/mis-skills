@@ -1,0 +1,5 @@
+interface:
+  display_name: "Implementar"
+  short_description: Implementar y verificar un pedido, una spec o tickets
+policy:
+  allow_implicit_invocation: false

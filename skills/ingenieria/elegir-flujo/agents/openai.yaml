@@ -1,0 +1,5 @@
+interface:
+  display_name: "Elegir flujo"
+  short_description: Encontrar la skill o el flujo adecuado para tu tarea
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Diseñar solución"
+  short_description: "Explorar y decidir una solución en conjunto"
+policy:
+  allow_implicit_invocation: false

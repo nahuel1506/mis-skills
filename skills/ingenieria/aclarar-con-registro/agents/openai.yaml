@@ -1,0 +1,5 @@
+interface:
+  display_name: "Aclarar con registro"
+  short_description: Cuestionar un diseño y registrar sus decisiones
+policy:
+  allow_implicit_invocation: false
