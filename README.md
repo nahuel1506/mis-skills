@@ -98,7 +98,3 @@ Para un pedido claro, podés empezar con `$implementar`. Si querés participar e
 - **Verificación.** Probá el flujo en el navegador y sumá `$revisar-codigo` si querés contrastar el cambio con sus requisitos. `webapp-testing` de Anthropic es una opción para probar una app local con Playwright. [Web App Testing](https://github.com/anthropics/skills/blob/main/skills/webapp-testing/SKILL.md)
 
 En `AGENTS.md` indicá qué componentes o estilos del proyecto reutilizar y cuándo verificar una pantalla en el navegador. Si el proyecto tiene un `DESIGN.md`, enlazalo ahí para que las skills usen la misma referencia visual. [Guía de AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
-
-## Origen y licencia
-
-Diecinueve skills adaptan la [colección de Matt Pocock](https://github.com/mattpocock/skills/tree/5863806dd4e15c63174bee4e7515a4256792ecfa). `disenar-solucion` es propia. [Licencia MIT](./LICENSE)
