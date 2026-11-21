@@ -5,9 +5,9 @@ argument-hint: "¿Para qué se utilizará la próxima sesión?"
 disable-model-invocation: true
 ---
 
-Redactá un documento de transferencia que resuma la conversación actual para que un agente nuevo pueda retomar el trabajo. Guardalo en el directorio temporal del sistema operativo del usuario (`$TMPDIR`, o `/tmp` en su defecto; `%TEMP%` en Windows), no en el espacio de trabajo actual.
+Redactá un documento de transferencia que resuma la conversación actual para que otro agente o sesión pueda retomar el trabajo. Guardalo en el directorio temporal del sistema operativo del usuario (`$TMPDIR`, `/tmp` o `%TEMP%` en Windows), o en `.scratch/handoff.md` (sin commitear) / directamente en el chat si el entorno aísla el directorio temporal o el usuario lo prefiere.
 
-Incluí una sección «skills sugeridas» en la que indiques cuáles debería invocar el siguiente agente mediante la herramienta de skills.
+Incluí una sección «skills sugeridas» indicando qué skills conviene invocar al retomar (manuales o automáticas).
 
 No dupliques información ya registrada en otros artefactos (especificaciones, planes, ADR, incidencias, commits o diferencias de código). Hacé referencia a ellos mediante su ruta o URL.
 

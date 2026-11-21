@@ -107,7 +107,7 @@ Para desarrollar habilidades, la dificultad productiva es una herramienta. Recup
 
 Cada actividad debe incluir un **ciclo de retroalimentación** que permita evaluar el desempeño. El ciclo debe ser lo más corto posible, con respuestas inmediatas y, si se puede, automáticas.
 
-En los cuestionarios, procurá que todas las alternativas tengan exactamente la misma cantidad de palabras y, de ser posible, de caracteres. Variá la posición de la respuesta correcta y no des pistas mediante el formato ni el orden.
+En los cuestionarios, procurá que todas las alternativas tengan longitud y nivel de detalle similares. Variá la posición de la respuesta correcta y no des pistas mediante el formato ni el orden.
 
 ## Desarrollo de criterio
 

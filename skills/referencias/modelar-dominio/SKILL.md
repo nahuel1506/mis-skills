@@ -1,6 +1,6 @@
 ---
 name: modelar-dominio
-description: Construye y precisa el modelo de dominio de un proyecto. Utilizar al acordar terminología, escribir el glosario o registrar un ADR.
+description: Construye y precisa el modelo de dominio (glosario y ADR). Usar al acordar terminología, registrar decisiones de arquitectura o cuando otra skill lo indique.
 ---
 
 # Modelado del dominio
@@ -9,25 +9,7 @@ Usá esta skill para modificar el modelo de dominio. Cualquier skill puede consu
 
 ## Ubicación de los documentos
 
-Seguí las rutas y formatos que declare el repositorio en sus instrucciones de proyecto o en `docs/agents/domain.md`, si existe. Consultá `GLOSSARY-MAP.md` para localizar el glosario del contexto relevante cuando el repo use un mapa. Como valores por defecto, usá `GLOSSARY.md` y `docs/adr/`.
-
-**Ejemplo con un solo contexto**
-
-```text
-GLOSSARY.md
-docs/adr/
-```
-
-**Ejemplo con varios contextos**
-
-```text
-GLOSSARY-MAP.md
-docs/adr/                    # Decisiones de todo el sistema
-src/ordering/GLOSSARY.md
-src/ordering/docs/adr/       # Decisiones de pedidos
-src/billing/GLOSSARY.md
-src/billing/docs/adr/
-```
+Seguí las rutas y formatos que declare el repositorio en sus instrucciones de proyecto o en `docs/agents/domain.md`, si existe. Si el repo usa varios contextos, consultá `GLOSSARY-MAP.md` para localizar el glosario y los ADR del contexto relevante. Como valores por defecto, usá `GLOSSARY.md` y `docs/adr/` en la raíz (ver detalles en [GLOSSARY-FORMAT.md](GLOSSARY-FORMAT.md) y [ADR-FORMAT.md](ADR-FORMAT.md)).
 
 ## Precisá los términos y las reglas
 

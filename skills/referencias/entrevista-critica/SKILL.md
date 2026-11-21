@@ -1,6 +1,6 @@
 ---
 name: entrevista-critica
-description: Entrevista a fondo al usuario para poner a prueba una idea, plan o decisión y llegar a una comprensión compartida.
+description: Método de entrevista estructurada por rondas para poner a prueba una idea, plan o decisión. Usar cuando el usuario pida una entrevista crítica o cuando otra skill lo indique.
 ---
 
 ## Conducí la entrevista por rondas

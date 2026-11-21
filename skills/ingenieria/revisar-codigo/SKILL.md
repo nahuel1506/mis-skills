@@ -13,7 +13,7 @@ Preguntá si una ambigüedad cambiaría qué entra en la revisión.
 
 ## Evaluá dos criterios
 
-- **Normas.** Leé los estándares aplicables del proyecto. Contrastá los cambios con esas reglas y señalá defectos o riesgos que puedas vincular al diff. Si un problema de estilo ya está cubierto por una comprobación fiable, priorizá el resultado de esa comprobación.
+- **Normas.** Leé los estándares aplicables y los ADR vigentes del proyecto. Contrastá los cambios con esas reglas y con la estructura del código vecino: señalá defectos, riesgos, abstracciones innecesarias o desvíos silenciosos respecto a la arquitectura y separación de responsabilidades del repo. Si un problema de estilo ya está cubierto por una comprobación fiable, priorizá el resultado de esa comprobación.
 - **Especificación.** Priorizá la spec, el ticket o la rúbrica que indicó el usuario. Usá los criterios acordados en la conversación cuando formen parte de lo que se pidió revisar. Buscá el origen vinculado al PR, al ticket, a los commits o a la documentación cuando no esté indicado. Revisá requisitos omitidos, implementaciones parciales o incorrectas y cambios que amplíen el alcance. Si falta una fuente, revisá las normas e indicá qué quedó sin verificar. Pedí la fuente si esa comparación era central al pedido.
 
 Por defecto, hacé ambas evaluaciones en la misma sesión. Si el alcance justifica una segunda lectura independiente o el usuario la pide, podés usar subagentes cuando estén disponibles. Pasales el mismo alcance y las fuentes pertinentes. Pediles realizar esa revisión directamente, sin volver a delegarla. Contrastá cada hallazgo devuelto con el diff antes de reportarlo.

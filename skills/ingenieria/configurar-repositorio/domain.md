@@ -8,7 +8,7 @@ Cómo deben consultar las skills de ingeniería la documentación del dominio de
 - **`GLOSSARY-MAP.md`** en la raíz, si existe: apunta a un `GLOSSARY.md` por contexto. Leé los glosarios relevantes para el tema.
 - **`docs/adr/`**: leé los ADR relacionados con el área donde vas a trabajar. Si el repositorio tiene varios contextos, consultá también `src/<context>/docs/adr/` para decisiones específicas.
 
-Si alguno de esos archivos no existe, **continuá sin señalarlo**. No propongas crearlo de antemano. La skill `modelar-dominio`, que consulta `aclarar-con-registro`, los crea cuando se acuerdan términos o decisiones que vale la pena registrar.
+Si alguno de esos archivos no existe, **continuá sin señalarlo**. No propongas crearlo de antemano. La skill `modelar-dominio`, que consulta `aclarar-idea` cuando corresponde, los crea cuando se acuerdan términos o decisiones que vale la pena registrar.
 
 ## Estructura de archivos
 

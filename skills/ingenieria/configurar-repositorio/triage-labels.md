@@ -2,7 +2,7 @@
 
 Las skills trabajan con cinco roles canónicos de clasificación. Esta tabla asigna cada rol a las etiquetas concretas del gestor de incidencias del proyecto.
 
-| Etiqueta en `mattpocock/skills` | Etiqueta en nuestro gestor | Significado |
+| Rol canónico | Etiqueta en nuestro gestor | Significado |
 | --- | --- | --- |
 | `needs-triage` | `needs-triage` | Un mantenedor debe evaluar la incidencia. |
 | `needs-info` | `needs-info` | Se espera más información de quien reportó. |

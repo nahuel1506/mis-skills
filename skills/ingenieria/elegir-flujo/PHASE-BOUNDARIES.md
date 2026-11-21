@@ -5,7 +5,7 @@ Consultá esta guía si cambia la persona, la sesión, el entorno o la cantidad 
 | Situación | Opción |
 | --- | --- |
 | El siguiente paso depende de matices, números o excepciones que solo están en esta conversación | Continuá en la misma sesión mientras resulte manejable. |
-| Otra persona, sesión o agente va a retomar el trabajo | Compartí un `transferir-contexto` o el artefacto acordado, con referencias a las fuentes necesarias. |
+| Otra persona, sesión o agente va a retomar el trabajo | Sugerí usar `transferir-contexto` o compartí el artefacto acordado, con referencias a las fuentes necesarias. |
 | El contexto acumulado dificulta continuar, y los acuerdos todavía importan | Resumí o compactá preservando decisiones, restricciones y preguntas abiertas. |
 | El siguiente trabajo es independiente y la sesión anterior no aporta | Empezá con un contexto nuevo. |
 | Hay una investigación o revisión acotada que gana con una lectura independiente | Delegala si el entorno lo permite. Pasá el alcance y las fuentes concretas. |

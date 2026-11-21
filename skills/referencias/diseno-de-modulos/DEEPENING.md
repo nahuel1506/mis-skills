@@ -1,6 +1,6 @@
 # Profundización de módulos
 
-Cómo profundizar de forma segura un conjunto de módulos superficiales teniendo en cuenta sus dependencias. Se presupone el vocabulario de [SKILL.md](SKILL.md): **módulo**, **interfaz**, **límite de separación** (*seam*) y **adaptador**.
+Cómo profundizar de forma segura un conjunto de módulos superficiales teniendo en cuenta sus dependencias. Se presupone el vocabulario de [SKILL.md](SKILL.md): **módulo**, **interfaz**, **punto de separación** (*seam*) y **adaptador**.
 
 ## Categorías de dependencias
 
@@ -12,22 +12,22 @@ Cálculos puros, estado en memoria y ausencia de E/S. Si comparten una responsab
 
 ### 2. Sustituibles localmente
 
-Dependencias que tienen sustitutos locales para pruebas (PGLite para Postgres, sistema de archivos en memoria). Pueden integrarse si existe el sustituto. El módulo profundizado se prueba ejecutando el sustituto en la suite de pruebas. El límite es interno; no hace falta un puerto en su interfaz externa.
+Dependencias con sustitutos locales para pruebas (por ejemplo, una base de datos efímera local o un sistema de archivos en memoria). Si la arquitectura del proyecto no requiere un puerto explícito en la interfaz externa, pueden integrarse con el punto de separación como detalle interno y probarse ejecutando el sustituto real.
 
 ### 3. Remotas, pero bajo nuestro control (puertos y adaptadores)
 
-En servicios propios separados por una red, un **puerto** puede aislar el contrato del transporte. Un **adaptador** puede implementar ese contrato por HTTP, gRPC o una cola. Si necesitás aislar la lógica para probarla, un sustituto en memoria puede alcanzar. Si la garantía depende del contrato real, probala también en ese límite.
+En servicios propios separados por una red, un **puerto** puede aislar el contrato del transporte. Un **adaptador** puede implementar ese contrato por HTTP, gRPC o una cola. Si necesitás aislar la lógica para probarla, un sustituto en memoria puede alcanzar. Si la garantía depende del contrato real, probala también en ese punto de separación.
 
-Forma de recomendarlo: *«Definí un puerto en el límite; implementá un adaptador HTTP para producción y otro en memoria para las pruebas. Así, la lógica queda concentrada en un módulo profundo, aunque se despliegue distribuida por la red»*.
+Forma de recomendarlo: *«Definí un puerto en el punto de separación; implementá un adaptador HTTP para producción y otro en memoria para las pruebas. Así, la lógica queda concentrada en un módulo profundo, aunque se despliegue distribuida por la red»*.
 
 ### 4. Realmente externas (simulaciones)
 
 Con servicios de terceros, un puerto puede evitar que el SDK, los errores o los datos del proveedor se filtren a los consumidores. Si la prueba necesita controlar respuestas del proveedor, podés sustituir la dependencia en ese punto.
 
-## Disciplina de los límites
+## Disciplina de los puntos de separación
 
-- **Evaluá el beneficio del límite.** Dos adaptadores suelen mostrar una necesidad de sustitución. Un solo adaptador puede justificarse si protege a los consumidores de la complejidad de un contrato real. Por ejemplo, un servicio de reservas puede usar un único proveedor de colas y aun así concentrar en su adaptador la traducción de mensajes y el tratamiento de errores del SDK. Contrastá ese beneficio con la indirección que agrega.
-- **Límites internos frente a externos.** Un módulo profundo puede tener límites internos (privados de su implementación y usados por sus pruebas), además del límite externo de su interfaz. No expongas los límites internos en la interfaz solo porque las pruebas los utilicen.
+- **Evaluá el beneficio del punto de separación.** Dos adaptadores suelen mostrar necesidad de sustitución. Un solo adaptador también se justifica si protege a los consumidores de la complejidad de un contrato real o sostiene una separación de responsabilidades consistente en el repo. Contrastá ese beneficio con la indirección que agrega.
+- **Puntos de separación internos frente a externos.** Un módulo profundo puede tener puntos de separación internos (privados de su implementación y usados por sus pruebas), además del externo de su interfaz. No expongas los internos en la interfaz pública solo porque las pruebas los utilicen.
 
 ## Estrategia de pruebas: reemplazar, no acumular capas
 

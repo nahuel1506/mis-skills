@@ -16,7 +16,7 @@ Las incidencias y especificaciones se registran como issues de GitHub. Utilizá 
 
 Inferí el repositorio con `git remote -v`; `gh` lo hace automáticamente dentro de una copia local.
 
-**Creá incidencias solo en repositorios del usuario.** Nunca las publiques en `mattpocock/skills` salvo que el usuario sea su propietario. En un fork, `gh` podría apuntar al repositorio original. Antes del primer `gh issue create` de la sesión, comprobá el destino con `gh repo view --json nameWithOwner` y confirmalo con el usuario si no es suyo.
+**Creá incidencias solo en el repositorio del proyecto.** Nunca publiques incidencias en repositorios ajenos ni en un upstream de plantilla o colección de skills. En un fork, `gh` podría apuntar al repositorio original. Antes del primer `gh issue create` de la sesión, comprobá el destino con `gh repo view --json nameWithOwner` y confirmalo con el usuario si no corresponde al proyecto.
 
 ## Cuando una skill indique «publicar en el gestor de incidencias»
 

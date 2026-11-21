@@ -33,12 +33,12 @@ Creá un registro cuando ocurra alguna de estas situaciones:
 1. **El usuario demostró una comprensión auténtica de algo no trivial**: no solamente vio el tema, sino que mostró que puede utilizar correctamente el concepto. Establece una nueva base para lo que se le puede enseñar.
 2. **El usuario informó conocimientos previos**: «Ya conozco X». Registralo para evitar repetirlo en otras sesiones. Anotá también el _nivel_ de conocimiento declarado.
 3. **Se corrigió una idea equivocada**: antes el usuario creía algo falso y ahora entiende por qué. Es una información valiosa, porque permite anticipar dificultades en temas relacionados.
-4. **La misión cambió a partir del aprendizaje**: el usuario descubrió otro objetivo. Agregá un enlace a [[MISSION.md]] y actualizá ese archivo.
+4. **La misión cambió a partir del aprendizaje**: el usuario descubrió otro objetivo. Agregá un enlace a `[MISSION.md](../MISSION.md)` y actualizá ese archivo.
 
 ### Qué NO justifica un registro
 
 - Material que solamente se explicó. Haber cubierto un tema no significa haberlo aprendido. Esperá evidencia.
-- Algo que ya figura de forma concisa en [[GLOSSARY.md]] como definición. Evitá duplicaciones.
+- Algo que ya figura de forma concisa en `[GLOSSARY.md](../GLOSSARY.md)` como definición. Evitá duplicaciones.
 - Un diario de actividades de cada sesión. Los registros no son una bitácora: guardan descubrimientos importantes para decisiones futuras.
 
 ## Reemplazo de registros

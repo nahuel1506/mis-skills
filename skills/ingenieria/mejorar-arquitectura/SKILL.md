@@ -10,7 +10,7 @@ disable-model-invocation: true
 
 Partí del módulo, servicio o problema indicado. Si el alcance es el repositorio en general, empezá por áreas con cambios frecuentes, comportamientos difíciles de probar o fricción que se vea en el código o su historial. Consultá el glosario y los ADR del área según las rutas del proyecto. Usá `diseno-de-modulos` como referencia cuando ayude a evaluar una interfaz o un punto de separación.
 
-Buscá oportunidades donde una interfaz clara pueda ocultar complejidad que hoy manejan los consumidores. Fijate, por ejemplo, si cambiar una regla obliga a tocar varios módulos, si los consumidores necesitan conocer un orden de llamadas delicado o si una prueba tiene que depender de detalles internos para observar el resultado. Si un módulo parece solo delegar, considerá qué complejidad reaparecería en los consumidores si lo quitaras.
+Buscá oportunidades donde una interfaz clara pueda ocultar complejidad que hoy manejan los consumidores. Fijate, por ejemplo, si cambiar una regla obliga a tocar varios módulos, si los consumidores necesitan conocer un orden de llamadas delicado o si una prueba tiene que depender de detalles internos para observar el resultado. Si un módulo parece solo delegar, evaluá qué complejidad o acoplamiento reaparecería en los consumidores si lo quitaras y si esa capa responde a una separación de responsabilidades deliberada del proyecto.
 
 ## 2. Priorizá candidatos con evidencia
 
@@ -27,4 +27,4 @@ Priorizá el candidato con el beneficio mejor respaldado. Si la estructura actua
 
 Entregá los hallazgos priorizados en el chat con referencias al código. Agregá un diagrama si aclara, por ejemplo, una dependencia, un flujo o el antes y después de un límite. Si el alcance o el uso del informe justifican un artefacto visual aparte, consultá [HTML-REPORT.md](HTML-REPORT.md) y aprovechá los patrones que sirvan al caso.
 
-La revisión puede terminar con la recomendación. Si el usuario quiere diseñar una mejora en conjunto, pasá el hallazgo, sus restricciones y cómo verificarlo a `disenar-solucion`. Si pide delegar la ejecución, pasá ese contexto a `implementar`.
+La revisión termina con la recomendación. Si el usuario quiere diseñar una mejora en conjunto, proponé seguir con `disenar-solucion` (o avanzá en esta sesión si te pide hacerlo ahora), conservando el hallazgo, sus restricciones y cómo verificarlo. Si pide delegar la ejecución, proponé `implementar` o aplicá el cambio con ese mismo contexto cuando te lo pida.

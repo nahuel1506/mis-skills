@@ -12,8 +12,7 @@ Partí de lo que el usuario quiere obtener ahora y de lo que ya tiene. Usá la c
 
 | Objetivo | Skill |
 | --- | --- |
-| Aclarar una idea en el chat | `aclarar-idea` |
-| Aclarar una idea y registrar vocabulario o decisiones de dominio | `aclarar-con-registro` |
+| Aclarar una idea en el chat (y registrar vocabulario o ADR si corresponde) | `aclarar-idea` |
 | Diseñar o comparar soluciones junto con el usuario | `disenar-solucion` |
 | Resolver una pregunta mediante un experimento ejecutable | `prototipar` |
 | Registrar lo acordado en una especificación | `especificar` |
@@ -24,4 +23,4 @@ Partí de lo que el usuario quiere obtener ahora y de lo que ya tiene. Usá la c
 
 Si el objetivo es más específico, consultá la skill pertinente de la colección. Por ejemplo, `diagnosticar-errores` para diagnosticar un error difícil o `mejorar-arquitectura` para buscar oportunidades estructurales.
 
-Antes de recomendar una skill, leé su `SKILL.md` para confirmar sus requisitos y qué produce o modifica. Si una skill de invocación manual no aparece en la lista actual, buscala entre las skills disponibles o en la colección antes de darla por ausente. Si hay que decidir cómo transferir el contexto, consultá [PHASE-BOUNDARIES.md](PHASE-BOUNDARIES.md).
+Leé el `SKILL.md` de una skill solo cuando necesites confirmar requisitos específicos o evitar dudas sobre qué produce o modifica. Si hay que decidir cómo transferir el contexto, consultá [PHASE-BOUNDARIES.md](PHASE-BOUNDARIES.md).

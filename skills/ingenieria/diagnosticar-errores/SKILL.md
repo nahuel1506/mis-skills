@@ -36,4 +36,4 @@ Si el usuario pidió corregir el fallo, aplicá un cambio que responda a la caus
 
 Si falta un punto de prueba adecuado, explicá qué garantía queda sin automatizar y qué señal sí pudiste comprobar. Volvé a ejecutar el escenario original o compará la evidencia disponible después del cambio bajo condiciones equivalentes. Retirá la instrumentación temporal que agregaste.
 
-Cerrá con el síntoma, la evidencia sobre la causa, las comprobaciones realizadas y lo que quedó pendiente. Si el usuario pidió implementar, seguí las reglas de `implementar` para la revisión y el commit.
+Cerrá con el síntoma, la evidencia sobre la causa, las comprobaciones realizadas y lo que quedó pendiente. Si el usuario pidió aplicar la corrección, revisá los cambios con `revisar-codigo` (alcance, normas y criterios) y creá un commit solo si el usuario lo pide o el flujo del repositorio lo establece.

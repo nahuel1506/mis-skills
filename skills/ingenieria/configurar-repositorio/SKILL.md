@@ -1,16 +1,17 @@
 ---
 name: configurar-repositorio
-description: "Configura el repositorio para las skills de ingeniería: gestor de incidencias, etiquetas de clasificación y organización de documentación del dominio. Usar cuando el repositorio necesite declarar estas convenciones."
+description: "Configura el repositorio para las skills de ingeniería: gestor de incidencias, etiquetas de clasificación, documentación de dominio y convenciones estructurales clave en AGENTS.md o CLAUDE.md."
 disable-model-invocation: true
 ---
 
-# Configuración de las skills de Matt Pocock
+# Configuración del repositorio para las skills
 
-Prepará la configuración por repositorio que las skills de ingeniería dan por existente:
+Prepará la configuración por repositorio que usan las skills de ingeniería:
 
-- **Gestor de incidencias**: dónde se administran los tickets (GitHub por defecto; también se admite Markdown local).
-- **Etiquetas de clasificación**: cadenas que representan los cinco roles canónicos del proceso de clasificación.
-- **Documentación del dominio**: dónde están `GLOSSARY.md` y los ADR, y qué reglas se aplican cuando otras skills los leen.
+- **Gestor de incidencias:** dónde se administran las especificaciones y tickets (GitHub, GitLab, Markdown local u otro).
+- **Etiquetas de clasificación (opcional):** correspondencia de etiquetas si el proyecto usa triage en GitHub/GitLab.
+- **Documentación del dominio:** ubicación de `GLOSSARY.md` y los ADR, y reglas para consultarlos.
+- **Convenciones de arquitectura y verificación:** resumen breve en `AGENTS.md` / `CLAUDE.md` con los límites estructurales que conviene mantener coherentes y los comandos de verificación del proyecto.
 
 Esta skill se guía por preguntas, no es un script determinista. Explorá, presentá tus hallazgos, confirmá con el usuario y recién entonces escribí los archivos.
 
@@ -18,70 +19,50 @@ Esta skill se guía por preguntas, no es un script determinista. Explorá, prese
 
 ### 1. Explorar
 
-Examiná el repositorio actual para conocer su estado inicial. Leé lo que existe, sin suposiciones:
+Examiná el repositorio actual para conocer su estado inicial sin suposiciones:
 
-- `git remote -v` y `.git/config`: ¿es un repositorio GitHub? ¿Cuál?
-- `AGENTS.md` y `CLAUDE.md` en la raíz: ¿existe alguno? ¿Ya hay una sección `## Agent skills`?
-- `GLOSSARY.md` y `GLOSSARY-MAP.md` en la raíz, y los nombres anteriores `CONTEXT.md` / `CONTEXT-MAP.md`. Si existe un archivo anterior, ofrecé renombrarlo mediante `git mv` a su equivalente `GLOSSARY` y actualizar los nombres en `docs/agents/domain.md`.
-- `docs/adr/` y posibles directorios `src/*/docs/adr/`.
-- `docs/agents/`: ¿ya existe contenido generado por una configuración anterior?
-- `.scratch/`: indica que quizá se utilice un gestor de incidencias basado en archivos Markdown locales.
-- ¿El proyecto ya tiene un mapa de etiquetas para sus incidencias? Anotá el uso de las etiquetas de publicación que indique el repo.
-- Señales de monorepositorio: `pnpm-workspace.yaml`, campo `workspaces` en `package.json`, o `packages/*` con carpetas `src/` propias. Solo se consideran cuando el repositorio realmente contiene muchos paquetes. Si no aparecen, asumí un solo contexto, como en casi todos los proyectos.
+- `git remote -v` y `.git/config`: ¿hay remoto en GitHub o GitLab?
+- `AGENTS.md` y `CLAUDE.md` en la raíz: ¿cuál existe? ¿Ya hay una sección `## Agent skills` o convenciones documentadas?
+- Estructura del código y herramientas: capas o carpetas principales (por ejemplo, `Controllers`/`Services`/`Repositories`, módulos por feature, etc.) y comandos reales de build, test y lint.
+- `GLOSSARY.md` y `GLOSSARY-MAP.md` en la raíz (y nombres heredados `CONTEXT.md` / `CONTEXT-MAP.md`; si aparecen, ofrecé renombrarlos con `git mv` y actualizar `docs/agents/domain.md`).
+- `docs/adr/` y posibles `src/*/docs/adr/`.
+- `docs/agents/` y `.scratch/` (y si `.scratch/` está en `.gitignore`).
+- Señales de monorepositorio: `pnpm-workspace.yaml`, `workspaces` en `package.json` o `packages/*` con `src/` propios. Si no aparecen, asumí un solo contexto.
 
 ### 2. Presentar resultados y preguntar
 
-Resumí qué existe y qué falta. Después abordá las secciones en orden: una sección, una respuesta, luego la siguiente.
-
-Encabezá cada sección con la opción recomendada para que el usuario pueda aceptarla con una palabra. Explicá las opciones en una línea solamente cuando haya una elección real; omití las secciones resueltas por la exploración (por ejemplo, la sección C si hay un solo contexto).
+Resumí qué existe y qué falta. Abordá solo las secciones con una decisión pendiente, en orden (una sección por respuesta), encabezando cada una con la opción recomendada para poder aceptarla rápido.
 
 **Sección A: gestor de incidencias.**
+Explicá brevemente que skills como `especificar` y `dividir-en-tareas` leen y escriben allí. Recomendá GitHub o GitLab si el remoto apunta a ellos, o Markdown local (`.scratch/<feature>/`) para proyectos individuales o sin remoto. También admití **Otro** (Jira, Linear, etc.) en texto libre.
 
-> Explicación: el «gestor de incidencias» es donde se registran los tickets de este repositorio. Skills como `dividir-en-tareas` y `especificar` leen y escriben allí. Necesitan saber si deben usar `gh issue create`, guardar Markdown en `.scratch/` o seguir otro procedimiento indicado por vos. Elegí el sistema que efectivamente utiliza el proyecto.
+Si elige GitHub o GitLab sin remoto accesible, pedí la URL, configuralo y verificá con `gh repo view` o `glab repo view`. Si elige Markdown local y `.scratch/` no está ignorado, ofrecé agregarlo a `.gitignore`. Registrá la decisión en `docs/agents/issue-tracker.md`.
 
-Por defecto, estas skills fueron diseñadas para GitHub. Si `git remote` apunta a GitHub, recomendalo. Si apunta a GitLab (`gitlab.com` o una instalación propia), recomendá GitLab. En otros casos, o si el usuario lo prefiere, ofrecé:
+**Sección B: etiquetas de clasificación (opcional).**
+Omitila por defecto en proyectos individuales o con gestor local, salvo que el usuario pida configurarla o el repo ya use etiquetas de triage. Si aplica, preguntá si conserva los roles predeterminados (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`) o si quiere mapearlos a etiquetas existentes en `docs/agents/triage-labels.md`.
 
-- **GitHub**: tickets en GitHub Issues del repositorio (CLI `gh`).
-- **GitLab**: tickets en GitLab Issues del repositorio (CLI [`glab`](https://gitlab.com/gitlab-org/cli)).
-- **Markdown local**: tickets como archivos bajo `.scratch/<feature>/` (útil para proyectos individuales o sin remoto).
-- **Otro** (Jira, Linear, etc.): pedí que describa en un párrafo el procedimiento. La skill lo registrará como texto libre.
+**Sección C: documentación del dominio.**
+Usá **un solo contexto** (`GLOSSARY.md` y `docs/adr/` en la raíz) por defecto sin preguntar. Ofrecé **varios contextos** (`GLOSSARY-MAP.md`) solo si encontraste señales claras de monorepositorio.
 
-Registrá la decisión en `docs/agents/issue-tracker.md`.
-
-Para GitHub o GitLab hace falta un repositorio accesible. Si el usuario elige uno y no existe un remoto correspondiente, pedile la URL del repositorio y configuralo (`git init` cuando corresponda, `git remote add origin <url>`). Terminá cuando `gh repo view` o `glab repo view` pueda mostrar el proyecto desde este directorio. Si falla, detenete e informá lo que falta.
-
-**Sección B: nombres de etiquetas de clasificación.** Usá esta sección si el proyecto necesita registrar su correspondencia de etiquetas o el usuario te pide configurarla. Reutilizá la configuración existente cuando ya resuelva la decisión. Si hace falta elegir, preguntá:
-
-> ¿Querés conservar las etiquetas de clasificación predeterminadas? (Recomendación: **sí**).
-
-Los cinco roles canónicos y etiquetas predeterminadas son `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human` y `wontfix`. Si responde **sí**, escribilos sin cambios. Si responde que no, normalmente porque ya usa otras etiquetas (por ejemplo `bug:triage` para `needs-triage`), pedí las correspondencias para reutilizar las existentes sin duplicarlas.
-
-**Sección C: documentación del dominio.** Usá por defecto **un solo contexto** (un `GLOSSARY.md` y `docs/adr/` en la raíz). Es adecuado para casi todos los repositorios; configuralo sin preguntar.
-
-Ofrecé **varios contextos** (un `GLOSSARY-MAP.md` central apuntando a glosarios por contexto) solamente si encontraste señales de monorepositorio. En ese caso, confirmá qué estructura quiere el usuario.
+**Sección D: convenciones de arquitectura y verificación.**
+Si `AGENTS.md` / `CLAUDE.md` todavía no las declara, proponé un borrador breve (5–8 líneas como máximo) basado en el código real:
+- Separación de responsabilidades y límites estructurales que conviene mantener consistentes (por ejemplo, flujo entre capas y dependencias permitidas).
+- Comandos principales de verificación (build, tests, lint) cuando no sean triviales o tengan requisitos particulares.
+- Si existe una decisión deliberada que a primera vista podría parecer redundante (como mantener una capa de repositorios sobre un ORM), sugerí documentar el *por qué* en un ADR corto en `docs/adr/`.
 
 ### 3. Confirmar antes de editar
 
-Mostrá un borrador de:
-
-- El bloque `## Agent skills` que agregarás al archivo `CLAUDE.md` o `AGENTS.md` elegido (ver paso 4).
-- Los contenidos de `docs/agents/issue-tracker.md`, `docs/agents/domain.md` y `docs/agents/triage-labels.md` (este último si se usó la sección B).
-
-Dejá que el usuario los edite antes de escribir.
+Mostrá el borrador de los cambios en `AGENTS.md` / `CLAUDE.md` y de los archivos en `docs/agents/` que vas a crear o actualizar. Dejá que el usuario los ajuste antes de escribir.
 
 ### 4. Escribir
 
-**Elegí el archivo que vas a modificar:**
+**Elegí el archivo raíz que vas a modificar:**
 
-- Si existe `CLAUDE.md`, editálo.
-- Si no existe y sí existe `AGENTS.md`, editá ese.
-- Si no existe ninguno, preguntá cuál quiere crear el usuario; no decidas por él.
+- Si existe solo `AGENTS.md` o solo `CLAUDE.md`, editá el existente sin crear el otro.
+- Si existen ambos, preguntá cuál es la fuente de verdad para evitar duplicaciones.
+- Si no existe ninguno, recomendá `AGENTS.md` (compatible con múltiples agentes) y confirmá si el usuario prefiere `CLAUDE.md`.
 
-Nunca crees `AGENTS.md` si ya existe `CLAUDE.md` (ni viceversa); modificá el existente.
-
-Si el archivo elegido ya tiene un bloque `## Agent skills`, actualizalo en el mismo lugar en vez de duplicarlo. Conservá las modificaciones del usuario en secciones adyacentes.
-
-El bloque:
+Si el archivo ya tiene `## Agent skills`, actualizalo en el mismo lugar conservando el resto del contenido.
 
 ```markdown
 ## Agent skills
@@ -99,20 +80,18 @@ El bloque:
 [Resumen de una línea de la estructura: «un contexto» o «varios contextos»]. Consultar `docs/agents/domain.md`.
 ```
 
-Incluí la subsección `### Etiquetas de clasificación` y escribí `docs/agents/triage-labels.md` si se completó la sección B. Si no, omití ambos.
+Incluí `### Etiquetas de clasificación` y `docs/agents/triage-labels.md` solo si se usó la sección B (y creá las etiquetas faltantes con `gh label create` / `glab label create` si corresponde). Agregá las convenciones acordadas en la sección D en su sección correspondiente del archivo raíz.
 
-Si se completó la sección B con GitHub o GitLab, creá las etiquetas configuradas que falten (`gh label create` / `glab label create`).
+Generá los archivos de `docs/agents/` usando las plantillas de esta carpeta:
 
-Después generá los documentos tomando como base las plantillas de esta carpeta:
+- [issue-tracker-github.md](./issue-tracker-github.md)
+- [issue-tracker-gitlab.md](./issue-tracker-gitlab.md)
+- [issue-tracker-local.md](./issue-tracker-local.md)
+- [triage-labels.md](./triage-labels.md) (si corresponde)
+- [domain.md](./domain.md)
 
-- [issue-tracker-github.md](./issue-tracker-github.md): gestor GitHub.
-- [issue-tracker-gitlab.md](./issue-tracker-gitlab.md): gestor GitLab.
-- [issue-tracker-local.md](./issue-tracker-local.md): gestor Markdown local.
-- [triage-labels.md](./triage-labels.md): correspondencia de etiquetas (si corresponde).
-- [domain.md](./domain.md): reglas para consultar la documentación del dominio y su estructura.
-
-Para otros gestores, redactá `docs/agents/issue-tracker.md` desde cero según el procedimiento descrito por el usuario.
+Para otros gestores, redactá `docs/agents/issue-tracker.md` según lo descrito por el usuario.
 
 ### 5. Finalización
 
-Informá al usuario que la configuración terminó y qué skills de ingeniería empezarán a usar estos archivos. Mencioná que puede editar `docs/agents/*.md` directamente después; solo hace falta repetir esta skill si quiere cambiar de gestor o configurar desde cero.
+Informá qué archivos quedaron configurados y qué skills empezarán a usarlos. Indicá que puede editar `AGENTS.md` / `CLAUDE.md` y `docs/agents/*.md` directamente cuando evolucionen las convenciones del proyecto.
