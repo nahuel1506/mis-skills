@@ -1,5 +1,5 @@
 interface:
   display_name: "Aprender"
-  short_description: Aprender un tema con lecciones y registros de progreso
+  short_description: Aprender un tema con ayudas visuales, práctica guiada y progreso
 policy:
   allow_implicit_invocation: false
