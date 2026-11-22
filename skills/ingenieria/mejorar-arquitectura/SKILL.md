@@ -19,7 +19,7 @@ Para cada candidato, incluí:
 - **Evidencia.** Qué regla, contrato o caso muestra la dificultad y en qué archivos se puede comprobar.
 - **Beneficio.** Qué cambio futuro sería más fácil o qué comportamiento pasaría a poder verificarse.
 - **Costo y riesgo.** Qué consumidores, contratos o datos habría que migrar y qué compatibilidad habría que conservar. Si un ADR justifica la estructura actual, evaluá su motivo y explicá qué evidencia justificaría revisarlo.
-- **Verificación.** Qué prueba o flujo mostraría que el cambio conserva el comportamiento.
+- **Verificación.** Qué prueba o flujo mostraría que el cambio conserva el comportamiento. Cuando la mejora consolide una frontera entre capas o módulos, considerá protegerla con una comprobación determinista (linter o test de arquitectura) y actualizar o retirar documentación que quede obsoleta.
 
 Priorizá el candidato con el beneficio mejor respaldado. Si la estructura actual se justifica o el costo supera el beneficio, explicá por qué puede convenir conservarla. Un hallazgo describe una dirección que vale la pena explorar.
 

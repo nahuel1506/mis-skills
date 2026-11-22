@@ -45,10 +45,10 @@ Omitila por defecto en proyectos individuales o con gestor local, salvo que el u
 Usá **un solo contexto** (`GLOSSARY.md` y `docs/adr/` en la raíz) por defecto sin preguntar. Ofrecé **varios contextos** (`GLOSSARY-MAP.md`) solo si encontraste señales claras de monorepositorio.
 
 **Sección D: convenciones de arquitectura y verificación.**
-Si `AGENTS.md` / `CLAUDE.md` todavía no las declara, proponé un borrador breve (5–8 líneas como máximo) basado en el código real:
-- Separación de responsabilidades y límites estructurales que conviene mantener consistentes (por ejemplo, flujo entre capas y dependencias permitidas).
+Si `AGENTS.md` / `CLAUDE.md` todavía no las declara, proponé un borrador breve (5–8 líneas como máximo) enfocado en **intención, límites y reglas no obvias** (evitando duplicar detalles que ya se ven en el código o en linters):
+- Separación de responsabilidades y límites estructurales que conviene mantener consistentes. Si una frontera crítica puede validarse de forma determinista (con un linter o test de arquitectura), sugerí reforzarla ahí en vez de depender solo de texto.
 - Comandos principales de verificación (build, tests, lint) cuando no sean triviales o tengan requisitos particulares.
-- Si existe una decisión deliberada que a primera vista podría parecer redundante (como mantener una capa de repositorios sobre un ORM), sugerí documentar el *por qué* en un ADR corto en `docs/adr/`.
+- Si existe una decisión deliberada que a primera vista podría parecer redundante, sugerí documentar el *por qué* en un ADR corto en `docs/adr/`.
 
 ### 3. Confirmar antes de editar
 

@@ -52,5 +52,6 @@ Escribí en **positivo**: indicar la conducta deseada enfoca la atención mejor 
 
 - **Fuente única de verdad:** mantené cada regla en un solo lugar; la duplicación cuesta tokens, mantenimiento y distorsiona prioridades.
 - **El entorno es fuente de verdad:** no dupliques en texto lo que el agente descubre directo en el repo (`package.json`, `.csproj`, scripts, `--help`), salvo que sea difícil de inferir. Documentá convenciones no escritas, motivos de decisiones y límites que el código por sí solo no revela.
+- **Checks deterministas antes que prosa:** para convenciones mecánicas o fronteras repetibles, preferí comprobaciones automáticas (linters, tipos, tests de arquitectura) antes que reglas en texto; reservá las instrucciones para intención, criterio y límites que las herramientas no validan.
 - **Pertinencia y sedimento:** eliminá líneas que ya no afectan el comportamiento para evitar acumulación de capas obsoletas.
 - **Instrucciones sin efecto:** probá oración por oración si realmente cambia la conducta frente a lo que el modelo ya hace por defecto. Si no cambia nada (o si una palabra guía es demasiado débil frente al comportamiento base), eliminala o reemplazala por una condición concreta y verificable.
