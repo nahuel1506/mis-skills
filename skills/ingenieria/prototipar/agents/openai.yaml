@@ -1,3 +1,5 @@
 interface:
   display_name: "Prototipar"
   short_description: Crear prototipos para responder preguntas de diseño
+policy:
+  allow_implicit_invocation: false

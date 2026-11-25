@@ -18,4 +18,4 @@ Usá este formato cuando el análisis arquitectónico gane con una entrega visua
 
 ## Vocabulario
 
-Usá español claro y conciso. Aplicá los conceptos de `diseno-de-modulos` (profundidad, interfaz, punto de separación, adaptador, aprovechamiento, localidad) respetando los nombres reales del repositorio y su glosario (por ejemplo, `Service`, `Repository`, `Component`).
+Usá español claro y conciso, respetando los nombres reales del repositorio y su glosario (por ejemplo, `Service`, `Repository`, `Component`), enfocándote en responsabilidades, acoplamiento, interfaces y límites claros.

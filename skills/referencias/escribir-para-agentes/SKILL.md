@@ -1,6 +1,7 @@
 ---
 name: escribir-para-agentes
-description: Principios para redactar instrucciones consumidas por agentes (skills, AGENTS.md o CLAUDE.md). Usar al crear o editar esos archivos o cuando otra skill lo indique.
+description: Principios para redactar instrucciones consumidas por agentes (skills, AGENTS.md o CLAUDE.md).
+disable-model-invocation: true
 ---
 
 Referencia para redactar documentos destinados a agentes: skills, `AGENTS.md`, `CLAUDE.md` o documentos auxiliares referenciados. Los mismos principios hacen predecible el procedimiento del agente sin desperdiciar contexto.

@@ -5,7 +5,7 @@ description: Diagnostica errores difíciles y regresiones de rendimiento a parti
 
 # Diagnóstico de errores
 
-Partí del síntoma que reportó el usuario, el comportamiento esperado y el entorno donde ocurre. Consultá el glosario y los ADR relevantes según las rutas del repo cuando ayuden a entenderlo. Ajustá el trabajo al pedido. Un diagnóstico puede terminar con evidencia y una causa confirmada o pendiente. Si el usuario pidió una corrección, continuá hasta verificarla o explicar qué impide hacerlo.
+Partí del síntoma que reportó el usuario, el comportamiento esperado y el entorno donde ocurre. Consultá solo el código, glosario y ADR relevantes (delegá barridos amplios de logs o archivos a un subagente de solo lectura si el entorno lo permite para mantener enfocado el hilo principal). Ajustá el trabajo al pedido. Un diagnóstico puede terminar con evidencia y una causa confirmada o pendiente. Si el usuario pidió una corrección, continuá hasta verificarla o explicar qué impide hacerlo.
 
 ## 1. Obtené una señal del fallo
 

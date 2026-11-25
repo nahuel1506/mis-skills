@@ -1,30 +1,31 @@
 ---
 name: modelar-dominio
-description: Construye y precisa el modelo de dominio (glosario y ADR). Usar al acordar terminología, registrar decisiones de arquitectura o cuando otra skill lo indique.
+description: Precisa el vocabulario del negocio (glosario) y registra decisiones deliberadas de arquitectura (ADR). Usar al acordar términos, registrar decisiones o cuando otra skill lo indique.
 ---
 
 # Modelado del dominio
 
-Usá esta skill para modificar el modelo de dominio. Cualquier skill puede consultar el vocabulario del proyecto.
+El **código** es la verdad viva de *cómo funciona* el sistema hoy. Esta skill mantiene los dos artefactos que el código por sí solo no puede expresar:
 
-## Ubicación de los documentos
+- **Glosario (`GLOSSARY.md`):** fija el lenguaje compartido del negocio (qué es exactamente cada concepto del dominio y qué sinónimos evitar) para que código, interfaz, specs y agentes nombren igual las mismas cosas.
+- **ADR (`docs/adr/`):** registra el **norte y la intención** de las decisiones deliberadas (*qué* se eligió, *por qué* y *qué alternativas se descartaron*), distinguiendo decisiones intencionales de deuda técnica accidental.
 
-Seguí las rutas y formatos que declare el repositorio en sus instrucciones de proyecto o en `docs/agents/domain.md`, si existe. Si el repo usa varios contextos, consultá `GLOSSARY-MAP.md` para localizar el glosario y los ADR del contexto relevante. Como valores por defecto, usá `GLOSSARY.md` y `docs/adr/` en la raíz (ver detalles en [GLOSSARY-FORMAT.md](GLOSSARY-FORMAT.md) y [ADR-FORMAT.md](ADR-FORMAT.md)).
+Ninguno de los dos duplica detalles de implementación (clases, métodos o flujos internos).
 
-## Precisá los términos y las reglas
+## Ubicación
 
-Contrastá el vocabulario con el glosario del contexto. Aclará enseguida una ambigüedad que cambie una respuesta, una regla o el alcance. Si solo afecta el nombre, tratala cuando se discuta ese tema. Tomá un caso concreto para distinguir conceptos ambiguos y proponé un término preciso para cada uno. Si la misma palabra tiene sentidos distintos en dos contextos, indicá a cuál pertenece cada significado. Probá las relaciones del dominio con casos límite que puedan cambiar cómo se definen.
+Seguí las rutas declaradas en el proyecto o en `docs/agents/domain.md` (si existe). Si hay varios contextos, consultá `GLOSSARY-MAP.md`. Por defecto: `GLOSSARY.md` y `docs/adr/` en la raíz ([GLOSSARY-FORMAT.md](GLOSSARY-FORMAT.md), [ADR-FORMAT.md](ADR-FORMAT.md)).
 
-Cuando una descripción contradiga el código, explicá qué pasa hoy y preguntá qué debería pasar. Por ejemplo, si el código cancela un pedido entero, preguntá si al cancelar uno de tres productos los otros dos deben seguir activos.
+## Precisá términos y reglas
+
+Contrastá el vocabulario con el glosario vigente. Aclará enseguida toda ambigüedad que cambie una regla o alcance usando casos concretos (y distinguí sentidos distintos entre contextos). Si una descripción contradice el código actual, señalá qué pasa hoy y preguntá cuál debe ser el comportamiento objetivo.
 
 ## Registrá lo acordado
 
-Actualizá el glosario cuando el término y su significado estén acordados. Creá los documentos a medida que hagan falta. Si el usuario pide guardar al cierre, reuní los cambios acordados y registralos juntos al terminar. Para el glosario, usá el formato del repo o [GLOSSARY-FORMAT.md](GLOSSARY-FORMAT.md). Registrá solamente vocabulario del dominio en el glosario.
+- **Glosario:** actualizalo cuando un término de dominio y su significado estén acordados (creá el archivo solo al registrar el primero). No incluyas conceptos genéricos de programación.
+- **ADR:** proponelo solo cuando la decisión esté tomada y cumpla **los tres criterios**:
+  1. Cambiarla después tiene un costo relevante.
+  2. Su motivo sería difícil de entender leyendo solo el código.
+  3. Hubo una elección real entre alternativas.
 
-Para proponer un ADR, comprobá que la decisión esté tomada y cumpla los tres criterios siguientes.
-
-1. Cambiarla después tiene un costo relevante.
-2. Su motivo sería difícil de entender sin contexto.
-3. Hubo una elección real entre alternativas.
-
-Consultá los ADR vigentes del área. Si el nuevo acuerdo reemplaza una decisión anterior, indicá la relación. Usá el formato del repo o [ADR-FORMAT.md](ADR-FORMAT.md).
+Consultá los ADR vigentes del área: si un acuerdo nuevo cambia el norte anterior, marcá el ADR previo como `superseded by ADR-NNNN` y enlazá la relación para no dejar decisiones en conflicto.

@@ -1,6 +1,7 @@
 ---
 name: prototipar
 description: Construye un experimento descartable y ejecutable para resolver una duda de diseño, comportamiento técnico o interacción.
+disable-model-invocation: true
 ---
 
 # Prototipo

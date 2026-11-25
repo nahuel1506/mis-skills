@@ -116,8 +116,8 @@ for (const [name, info] of skills) {
   }
 }
 
-// Check Manual/Auto column in README tables
-const tableRowRegex = /^\|\s*\[\$([a-z0-9-]+)\]\(([^)]+)\)\s*\|[^|]+\|\s*(Manual|Auto)\s*\|$/gm;
+// Check Manual/Auto column in README tables (both 3-col and 4-col tables)
+const tableRowRegex = /^\|\s*\[\$([a-z0-9-]+)\]\(([^)]+)\)\s*\|[^|]+\|\s*(Manual|Auto)\s*\|/gm;
 for (const match of readme.matchAll(tableRowRegex)) {
   const [, name, , invocation] = match;
   const skill = skills.get(name);
@@ -142,19 +142,7 @@ if (depsMatch) {
   }
 }
 
-// 4. Validate elegir-flujo table references
-const elegirFlujoPath = path.join(skillsRoot, 'ingenieria', 'elegir-flujo', 'SKILL.md');
-if (fs.existsSync(elegirFlujoPath)) {
-  const elegirContent = fs.readFileSync(elegirFlujoPath, 'utf8');
-  for (const match of elegirContent.matchAll(/^\|\s*[^|]+\|\s*`([a-z0-9-]+)`\s*\|$/gm)) {
-    const targetName = match[1];
-    if (!skills.has(targetName)) {
-      fail(`elegir-flujo/SKILL.md referencia una skill inexistente: '${targetName}'`);
-    }
-  }
-}
-
-// 5. Validate relative links in README.md and all markdown files under skills/
+// 4. Validate relative links in README.md and all markdown files under skills/
 checkRelativeLinks(readmePath);
 for (const mdFile of allFiles.filter((f) => f.endsWith('.md'))) {
   checkRelativeLinks(mdFile);

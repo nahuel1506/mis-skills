@@ -52,13 +52,22 @@ Si una skill se elimina o fusiona en el origen, borrá su carpeta local después
 
 </details>
 
-## Uso rápido
+## Flujo recomendado
 
-Invocá una skill por su nombre según tu entorno (`$nombre` en Codex, `/nombre` en Claude/compatibles). Las marcadas **Auto** también se activan por contexto o desde otras skills.
+Invocá una skill por su nombre según tu entorno (`$nombre` en Codex, `/nombre` en Claude/compatibles). Solo **4 skills** son **Auto** para mantener mínimo el contexto fijo.
+
+```text
+[QUÉ] $aclarar-idea ──► [CÓMO] $disenar-solucion ──► $especificar / $dividir-en-tareas
+                                                               │
+                                                ── sesión limpia por ticket ──
+                                                               ▼
+                                                         $implementar
+                                                  (pruebas-primero + revisar-codigo)
+```
 
 - **Pedido claro:** empezá directo con `$implementar`.
-- **Decisión técnica:** usá `$disenar-solucion` (y `$prototipar` si falta evidencia).
-- **Idea verde o dudas sobre por dónde arrancar:** usá `$aclarar-idea` o `$elegir-flujo`.
+- **Duda técnica o comparación de enfoques:** usá `$disenar-solucion` (y `$prototipar` si falta evidencia).
+- **Idea verde o reglas de negocio por definir:** empezá con `$aclarar-idea`.
 
 ## Catálogo
 
@@ -66,42 +75,36 @@ Invocá una skill por su nombre según tu entorno (`$nombre` en Codex, `/nombre`
 
 | Skill | Para qué sirve | Invocación |
 | --- | --- | --- |
-| [$elegir-flujo](./skills/ingenieria/elegir-flujo/SKILL.md) | Elegir el recorrido más corto para la tarea. | Manual |
-| [$aclarar-idea](./skills/ingenieria/aclarar-idea/SKILL.md) | Entrevistar una idea y registrar glosario o ADR si hace falta. | Manual |
-| [$disenar-solucion](./skills/ingenieria/disenar-solucion/SKILL.md) | Comparar soluciones técnicas y elegir junto al agente. | Manual |
-| [$prototipar](./skills/ingenieria/prototipar/SKILL.md) | Resolver una duda con un experimento reproducible. | Auto |
-| [$especificar](./skills/ingenieria/especificar/SKILL.md) | Convertir acuerdos en una especificación verificable. | Manual |
-| [$dividir-en-tareas](./skills/ingenieria/dividir-en-tareas/SKILL.md) | Dividir una entrega en tickets verificables con dependencias. | Manual |
-| [$implementar](./skills/ingenieria/implementar/SKILL.md) | Construir y verificar un pedido, spec o ticket. | Manual |
-| [$pruebas-primero](./skills/ingenieria/pruebas-primero/SKILL.md) | Desarrollar o corregir con ciclos rojo, verde y refactorización. | Auto |
-| [$revisar-codigo](./skills/ingenieria/revisar-codigo/SKILL.md) | Revisar cambios, una rama o un PR contra normas y requisitos. | Auto |
-| [$retrospectiva](./skills/ingenieria/retrospectiva/SKILL.md) | Proponer mejoras al flujo a partir de una sesión. | Manual |
-| [$diagnosticar-errores](./skills/ingenieria/diagnosticar-errores/SKILL.md) | Aislar la causa de un fallo o regresión con evidencia. | Auto |
-| [$mejorar-arquitectura](./skills/ingenieria/mejorar-arquitectura/SKILL.md) | Priorizar mejoras estructurales con evidencia del código. | Manual |
+| [$aclarar-idea](./skills/ingenieria/aclarar-idea/SKILL.md) | Definir **qué** construir por rondas y registrar glosario o ADR si aplica. | Manual |
+| [$disenar-solucion](./skills/ingenieria/disenar-solucion/SKILL.md) | Decidir **cómo** construir comparando alternativas y trade-offs. | Manual |
+| [$prototipar](./skills/ingenieria/prototipar/SKILL.md) | Resolver una duda con un experimento descartable y ejecutable. | Manual |
+| [$especificar](./skills/ingenieria/especificar/SKILL.md) | Bajar acuerdos a una spec verificable y autosuficiente. | Manual |
+| [$dividir-en-tareas](./skills/ingenieria/dividir-en-tareas/SKILL.md) | Dividir una entrega en tickets acotados para sesiones limpias. | Manual |
+| [$implementar](./skills/ingenieria/implementar/SKILL.md) | Construir y verificar un pedido, spec o ticket cuidando arquitectura y contexto. | Manual |
+| [$pruebas-primero](./skills/ingenieria/pruebas-primero/SKILL.md) | Desarrollar o corregir con ciclos proporcionales rojo, verde y refactorización. | Auto |
+| [$revisar-codigo](./skills/ingenieria/revisar-codigo/SKILL.md) | Auditar cambios, una rama o un PR contra normas, ADR y requisitos. | Auto |
+| [$diagnosticar-errores](./skills/ingenieria/diagnosticar-errores/SKILL.md) | Aislar la causa de un fallo o regresión con evidencia reproducible. | Auto |
+| [$mejorar-arquitectura](./skills/ingenieria/mejorar-arquitectura/SKILL.md) | Auditar el código para priorizar mejoras estructurales con evidencia. | Manual |
+| [$retrospectiva](./skills/ingenieria/retrospectiva/SKILL.md) | Proponer mejoras al flujo a partir de problemas observados en una sesión. | Manual |
 | [$configurar-repositorio](./skills/ingenieria/configurar-repositorio/SKILL.md) | Configurar gestor de issues, dominio y convenciones en `AGENTS.md`. | Manual |
 
 ### Referencias, productividad y aprendizaje
 
-| Skill | Categoría | Para qué sirve |
-| --- | --- | --- |
-| [$entrevista-critica](./skills/referencias/entrevista-critica/SKILL.md) | Referencia | Entrevistar por rondas y verificar supuestos. |
-| [$modelar-dominio](./skills/referencias/modelar-dominio/SKILL.md) | Referencia | Acordar vocabulario, glosario y ADR. |
-| [$diseno-de-modulos](./skills/referencias/diseno-de-modulos/SKILL.md) | Referencia | Evaluar interfaces, responsabilidades y puntos de separación. |
-| [$escribir-para-agentes](./skills/referencias/escribir-para-agentes/SKILL.md) | Referencia | Redactar `AGENTS.md` o skills efectivas. |
-| [$transferir-contexto](./skills/productividad/transferir-contexto/SKILL.md) | Productividad | Preparar el traspaso de contexto a otra sesión. |
-| [$aprender](./skills/aprendizaje/aprender/SKILL.md) | Aprendizaje | Organizar un estudio guiado de varias sesiones. |
+| Skill | Categoría | Invocación | Para qué sirve |
+| --- | --- | --- | --- |
+| [$modelar-dominio](./skills/referencias/modelar-dominio/SKILL.md) | Referencia | Auto | Fijar vocabulario del negocio (`GLOSSARY.md`) y norte de decisiones (`docs/adr/`). |
+| [$escribir-para-agentes](./skills/referencias/escribir-para-agentes/SKILL.md) | Referencia | Manual | Redactar `AGENTS.md` o skills efectivas sin ruido. |
+| [$transferir-contexto](./skills/productividad/transferir-contexto/SKILL.md) | Productividad | Manual | Preparar el traspaso a una sesión limpia entre fases o tickets. |
+| [$aprender](./skills/aprendizaje/aprender/SKILL.md) | Aprendizaje | Manual | Estudio guiado basado en evidencia y práctica directa. |
 
 <details>
 <summary>Dependencias al instalar por nombre</summary>
 
 | Si instalás… | Incluí también… |
 | --- | --- |
-| `aclarar-idea` | `entrevista-critica` (y `modelar-dominio` si registrás glosario o ADR) |
-| `disenar-solucion` | `diseno-de-modulos` si evaluás interfaces o límites de módulos |
+| `aclarar-idea` o `disenar-solucion` | `modelar-dominio` si registrás glosario o ADR |
 | `implementar` | `pruebas-primero` y `revisar-codigo` |
 | `diagnosticar-errores` | `pruebas-primero` y `revisar-codigo` si aplicás y revisás la corrección |
-| `pruebas-primero` o `mejorar-arquitectura` | `diseno-de-modulos` si evaluás interfaces o puntos de separación |
-| `retrospectiva` | `escribir-para-agentes` si redactás instrucciones |
 
 </details>
 

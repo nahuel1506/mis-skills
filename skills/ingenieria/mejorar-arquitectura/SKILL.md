@@ -1,30 +1,30 @@
 ---
 name: mejorar-arquitectura
-description: Revisa el código para encontrar mejoras estructurales, explicar su impacto y priorizar cuáles conviene explorar.
+description: Audita el código para proponer mejoras estructurales priorizadas con evidencia, beneficio, riesgo y verificación.
 disable-model-invocation: true
 ---
 
 # Mejorar la arquitectura del código
 
-## 1. Delimitá la revisión
+## 1. Delimitá y explorá sin saturar el contexto
 
-Partí del módulo, servicio o problema indicado. Si el alcance es el repositorio en general, empezá por áreas con cambios frecuentes, comportamientos difíciles de probar o fricción que se vea en el código o su historial. Consultá el glosario y los ADR del área según las rutas del proyecto. Usá `diseno-de-modulos` como referencia cuando ayude a evaluar una interfaz o un punto de separación.
+Partí del módulo, problema o alcance indicado. Si abarca todo el repo, empezá por áreas con cambios frecuentes, fricción visible o dificultad para probar. Consultá el glosario y los ADR vigentes para entender qué decisiones son deliberadas. Cuando haya que auditar múltiples módulos, delegá lecturas amplias a subagentes de solo lectura (si el entorno lo permite) para que el hilo principal reciba hallazgos con evidencia en vez de decenas de archivos crudos.
 
-Buscá oportunidades donde una interfaz clara pueda ocultar complejidad que hoy manejan los consumidores. Fijate, por ejemplo, si cambiar una regla obliga a tocar varios módulos, si los consumidores necesitan conocer un orden de llamadas delicado o si una prueba tiene que depender de detalles internos para observar el resultado. Si un módulo parece solo delegar, evaluá qué complejidad o acoplamiento reaparecería en los consumidores si lo quitaras y si esa capa responde a una separación de responsabilidades deliberada del proyecto.
+Buscá oportunidades reales donde una interfaz más clara oculte complejidad hoy dispersa en consumidores, donde cambiar una regla obligue a tocar varios módulos o donde probar exija acoplarse a detalles internos. Si una capa o módulo parece solo delegar, evaluá qué complejidad o acoplamiento reaparecería al quitarlo y si responde a una separación de responsabilidades deliberada del proyecto.
 
 ## 2. Priorizá candidatos con evidencia
 
 Para cada candidato, incluí:
 
-- **Evidencia.** Qué regla, contrato o caso muestra la dificultad y en qué archivos se puede comprobar.
-- **Beneficio.** Qué cambio futuro sería más fácil o qué comportamiento pasaría a poder verificarse.
-- **Costo y riesgo.** Qué consumidores, contratos o datos habría que migrar y qué compatibilidad habría que conservar. Si un ADR justifica la estructura actual, evaluá su motivo y explicá qué evidencia justificaría revisarlo.
-- **Verificación.** Qué prueba o flujo mostraría que el cambio conserva el comportamiento. Cuando la mejora consolide una frontera entre capas o módulos, considerá protegerla con una comprobación determinista (linter o test de arquitectura) y actualizar o retirar documentación que quede obsoleta.
+- **Evidencia:** qué regla, contrato o caso muestra el problema y en qué archivos comprobarlo.
+- **Beneficio:** qué cambio futuro se simplifica, qué rendimiento mejora o qué garantía pasa a poder probarse.
+- **Costo y riesgo:** qué consumidores, contratos o datos migrar. Si un ADR respalda la estructura actual, evaluá su motivo y qué evidencia justifica revisarlo.
+- **Verificación:** cómo comprobar que conserva comportamiento. Si consolida una frontera entre capas o módulos, considerá blindarla con un check determinista (linter o test de arquitectura) y limpiar documentación obsoleta.
 
-Priorizá el candidato con el beneficio mejor respaldado. Si la estructura actual se justifica o el costo supera el beneficio, explicá por qué puede convenir conservarla. Un hallazgo describe una dirección que vale la pena explorar.
+Si la estructura actual se justifica o el costo supera el beneficio, explicalo explícitamente en lugar de forzar un refactor.
 
-## 3. Presentá el resultado y dejá elegir cómo seguir
+## 3. Presentá y cerrá
 
-Entregá los hallazgos priorizados en el chat con referencias al código. Agregá un diagrama si aclara, por ejemplo, una dependencia, un flujo o el antes y después de un límite. Si el alcance o el uso del informe justifican un artefacto visual aparte, consultá [HTML-REPORT.md](HTML-REPORT.md) y aprovechá los patrones que sirvan al caso.
+Entregá los hallazgos priorizados en el chat con referencias al código (y un diagrama si aclara). Si el volumen o uso justifica un informe visual aparte, consultá [HTML-REPORT.md](HTML-REPORT.md).
 
-La revisión termina con la recomendación. Si el usuario quiere diseñar una mejora en conjunto, proponé seguir con `disenar-solucion` (o avanzá en esta sesión si te pide hacerlo ahora), conservando el hallazgo, sus restricciones y cómo verificarlo. Si pide delegar la ejecución, proponé `implementar` o aplicá el cambio con ese mismo contexto cuando te lo pida.
+La revisión termina con la recomendación. Para diseñar una mejora en detalle sugerí `disenar-solucion`, o para ejecutarla sugerí `implementar` (idealmente en una sesión limpia por bloque aprobado).

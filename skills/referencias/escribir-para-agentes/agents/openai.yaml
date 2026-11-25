@@ -1,3 +1,5 @@
 interface:
   display_name: "Escribir para agentes"
   short_description: Escribir instrucciones y documentos que leen los agentes
+policy:
+  allow_implicit_invocation: false
