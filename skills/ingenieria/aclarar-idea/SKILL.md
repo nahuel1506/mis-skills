@@ -28,8 +28,10 @@ Si la ronda es extensa, agrupala por tema con numeración única. Conservá las 
 
 Planteá la pregunta antes de recomendar. Si hay opciones definidas, dales nombres cortos y explicá qué cambia con cada una para responder por letra o proponer otra. Las decisiones corresponden al usuario.
 
-## 3. Cerrá y registrá si corresponde
+Incluí una vista visual sobria (UI visual/interactiva inline si el entorno la soporta, o Mermaid/esquema compacto) cuando aparezcan **estados con transiciones**, **relaciones entre entidades del dominio** o **dos opciones de negocio en contraste** —y al cerrar si lo acordado conecta varias reglas—. Omitila en preguntas lineales o puntuales.
+
+## 3. Cerrá y evaluá glosario / ADR
 
 Cuando la frontera quede vacía (o el usuario quiera cerrar), resumí los acuerdos con sus condiciones, excepciones y dudas abiertas, y verificá que coincidan con lo que entendió.
 
-Si el usuario pide registrar vocabulario o decisiones —o si durante la entrevista surgieron términos de dominio o decisiones de norte/arquitectura relevantes y confirma guardarlos—, aplicá `modelar-dominio` para actualizar el glosario y los ADR. Indicá qué documentos se actualizaron y qué acuerdos quedaron solo en el chat. Pasá a diseñar (`disenar-solucion`), especificar (`especificar`) o implementar solo cuando el usuario lo pida.
+Antes de cerrar, **evaluá proactivamente** si surgieron términos nuevos de dominio o decisiones de negocio/arquitectura que cumplan los criterios de `modelar-dominio`; si corresponde, proponé los términos o el borrador breve del ADR y preguntá si querés guardarlos ahora (no esperes a que el usuario lo pida). Al registrar, indicá qué documentos se actualizaron y qué acuerdos quedaron en el chat. Pasá a diseñar (`disenar-solucion`), especificar (`especificar`) o implementar solo cuando el usuario lo pida.

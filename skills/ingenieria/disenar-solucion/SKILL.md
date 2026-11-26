@@ -1,13 +1,21 @@
 ---
 name: disenar-solucion
-description: Decide CÓMO construir una solución técnica comparando alternativas reales, trade-offs y criterios de verificación.
+description: Diseña en profundidad CÓMO construir una solución técnica sobre el código real, comparando alternativas, contratos, flujos y modos de fallo.
 disable-model-invocation: true
 ---
 
 # Diseñar cómo construirlo
 
-1. **Ubicá la decisión.** Partí del objetivo, las restricciones y los acuerdos vigentes (qué construir). Consultá solo el código, contratos y ADR que puedan cambiar la discusión. Si el usuario trae una propuesta, partí de ella. Si quiere razonar primero, planteá una pregunta neutral y esperá antes de sugerir un enfoque.
-2. **Explorá alternativas reales.** Contrastá opciones que cambien compromisos concretos (responsabilidades, ubicación de límites entre módulos o complejidad expuesta al consumidor), incluyendo conservar lo que existe cuando sea viable. Evaluá si cada capa o abstracción oculta complejidad real o solo delega sin valor, mostrando un ejemplo desde la perspectiva del consumidor cuando importe la interfaz. Si la decisión gana con miradas independientes y el entorno lo permite, explorá alternativas en subagentes separados con las mismas restricciones y prioridades distintas. Si una idea falla, mostrá el escenario y la consecuencia. Recomendá una opción con su motivo y qué evidencia cambiaría esa recomendación. Usá un diagrama si aclara un flujo, contrato o estado.
-3. **Cerrá el diseño.** Dejá que el usuario decida los puntos que cambian la solución. Si falta evidencia, definí la pregunta exacta que respondería un prototipo (`prototipar`). Resumí lo decidido, por qué y cómo verificarlo, distinguiendo lo abierto de lo delegado al implementador. Si la decisión es difícil de revertir y no evidente desde el código, ofrecé registrarla en un ADR (`modelar-dominio`).
+1. **Anclá en el código real.** Partí del objetivo, las restricciones y los acuerdos de alcance. Inspeccioná los archivos, contratos, configuración y ADR reales que se verán afectados antes de proponer (no diseñes en abstracto). Si el usuario trae una propuesta, partí de ella; si quiere razonar primero, planteá una pregunta neutral y esperá.
 
-Terminá con ese resumen en el chat. Si el hilo acumuló mucha exploración, sugerí bajar lo acordado a una spec/ADR y continuar la implementación en una sesión limpia.
+2. **Aterrizá el diseño técnico (evitá quedarte en titulares).** Cubrí con precisión concreta los aspectos que importan para esta tarea:
+   - **Componentes y límites:** qué módulos, servicios, endpoints o infraestructura se crean o modifican y cómo encajan en la arquitectura vigente. Evaluá si cada abstracción oculta complejidad real o solo delega.
+   - **Contratos, datos y configuración:** interfaces, rutas, payloads, esquemas, nombres de métricas/eventos o variables de entorno relevantes (mostrá ejemplos desde la perspectiva del consumidor cuando importe).
+   - **Flujo y modos de fallo:** recorrido de extremo a extremo, estados clave, timeouts, concurrencia, seguridad/privacidad y cómo se comporta el sistema si falla una dependencia.
+   - **Alternativas con compromisos reales:** en cada decisión técnica relevante, contrastá opciones viables (incluyendo conservar lo existente), mostrá qué falla o cuesta cada una, recomendá una con su motivo y qué evidencia cambiaría la recomendación. Si una decisión gana con miradas independientes y el entorno lo permite, explorá alternativas en subagentes separados con prioridades distintas.
+   - **Ayuda visual para el usuario:** incluí una vista visual sobria (UI visual/interactiva inline si el entorno la soporta, o Mermaid/esquema compacto en el chat) siempre que el diseño involucre **interacción entre varias piezas/sistemas**, **estados con transiciones o fallos**, **transformación de datos paso a paso** o **contraste entre alternativas estructurales**. Omitila solo en ajustes lineales o puntuales.
+
+3. **Iterá y cerrá con criterio.** Planteá las decisiones técnicas abiertas con tu recomendación y preguntá si el usuario quiere profundizar algún punto antes de dar por cerrado el diseño (si falta evidencia, definí qué respondería un prototipo con `prototipar`). Al cerrar:
+   - Resumí el diseño concreto (componentes, contratos, verificación y qué queda delegado al implementador).
+   - **Evaluá proactivamente glosario y ADR (`modelar-dominio`):** comprobá si surgieron decisiones difíciles de revertir y no evidentes desde el código o términos nuevos; si corresponde, proponé el borrador breve del ADR o término para confirmar si se guarda ahora (no esperes a que el usuario lo pida).
+   - Si el hilo acumuló mucha exploración, sugerí bajar lo acordado a una spec (`especificar`) y ejecutar la implementación en una sesión limpia.

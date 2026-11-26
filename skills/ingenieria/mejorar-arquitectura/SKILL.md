@@ -25,6 +25,6 @@ Si la estructura actual se justifica o el costo supera el beneficio, explicalo e
 
 ## 3. Presentá y cerrá
 
-Entregá los hallazgos priorizados en el chat con referencias al código (y un diagrama si aclara). Si el volumen o uso justifica un informe visual aparte, consultá [HTML-REPORT.md](HTML-REPORT.md).
+Entregá los hallazgos priorizados en el chat con referencias al código. Incluí una vista visual sobria (UI visual/interactiva inline si el entorno la soporta, o Mermaid/esquema compacto) para mostrar el **antes/después** o las dependencias en los hallazgos principales; omitila solo en ajustes triviales. Si el alcance o el uso del informe justifican un artefacto visual aparte, consultá [HTML-REPORT.md](HTML-REPORT.md).
 
 La revisión termina con la recomendación. Para diseñar una mejora en detalle sugerí `disenar-solucion`, o para ejecutarla sugerí `implementar` (idealmente en una sesión limpia por bloque aprobado).
