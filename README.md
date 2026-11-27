@@ -58,10 +58,11 @@ Invocá una skill por su nombre según tu entorno (`$nombre` en Codex, `/nombre`
 
 ```mermaid
 flowchart LR
-    A["QUÉ<br/>$aclarar-idea"] --> B["CÓMO<br/>$disenar-solucion"]
-    B <--> P["Validar hipótesis<br/>$prototipar"]
-    B --> C["$especificar /<br/>$dividir-en-tareas"]
-    C -. "sesión limpia por ticket" .-> D["$implementar<br/>(pruebas-primero + revisar-codigo)"]
+    A["QUÉ: $aclarar-idea"] --> B["CÓMO: $disenar-solucion"]
+    A -. "si delegás el cómo" .-> D["$implementar (pruebas-primero + revisar-codigo)"]
+    B <--> P["Validar: $prototipar"]
+    B --> C["$especificar / $dividir-en-tareas"]
+    C -. "sesión limpia por ticket" .-> D
 ```
 
 ### Cómo elegir flujo y tipo de modelo
@@ -71,6 +72,7 @@ No hace falta recorrer todo el flujo ni cambiar de modelo en cada paso: **cambia
 | Situación | Flujo sugerido | Tipo de modelo recomendado |
 | --- | --- | --- |
 | **Pedido claro y acotado** | Directo a `$implementar` | Un solo modelo **equilibrado** (o **potente** si toca lógica delicada/arquitectura) de principio a fin, sin cambiar a mitad de camino. |
+| **Querés definir bien el qué y delegar el cómo** | `$aclarar-idea` → `$implementar` *(pasando por `$especificar` si las rondas fueron largas)* | **Máximo razonamiento** para aclarar el qué y **potente** para implementar (como delegás el diseño técnico, no conviene bajar a un modelo débil). Si las rondas fueron breves, implementá en el mismo hilo para aprovechar el caché; si se extendieron, bajá a spec y abrí sesión limpia. |
 | **Idea clara, falta definir el cómo** | `$disenar-solucion` → `$implementar` | **Máximo razonamiento** para diseñar. Si el cambio es chico, implementalo en el mismo hilo con ese modelo (aprovechás contexto y caché). Si el hilo creció mucho, abrí sesión limpia para implementar. |
 | **Idea verde o entrega grande** | `$aclarar-idea` → `$disenar-solucion` → `$especificar` / `$dividir-en-tareas` → `$implementar` | **Máximo razonamiento** para aclarar, diseñar y dividir. Después, **una sesión limpia por ticket**, eligiendo modelo según la dificultad real de ese ticket (rápido/equilibrado para cambios mecánicos o directos; potente para lógica compleja, concurrencia o arquitectura). |
 | **Bug difícil o auditoría** | `$diagnosticar-errores` / `$mejorar-arquitectura` | **Máximo razonamiento** en el hilo principal, delegando barridos amplios a subagentes de solo lectura. |
