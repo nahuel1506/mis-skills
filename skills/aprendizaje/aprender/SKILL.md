@@ -5,8 +5,6 @@ disable-model-invocation: true
 argument-hint: "¿Qué te gustaría aprender?"
 ---
 
-El usuario quiere aprender un tema o habilidad de forma real y duradera, ya sea en una sesión puntual o a lo largo de varias sesiones.
-
 ## 1. Iniciar o retomar sesión
 
 - **Guardia de directorio:** si el usuario quiere guardar progreso en disco pero el directorio actual parece un proyecto de código, preguntá si prefiere trabajar solo en el chat o en una carpeta dedicada antes de crear archivos.
@@ -29,4 +27,3 @@ Trabajá **un concepto acotado por vez** conectado con el objetivo, cuidando la 
 - **Solo en el chat** para sesiones puntuales: cerrá con un resumen breve de lo logrado y el siguiente paso sugerido.
 - **Estudio multi-sesión (`PROGRESO.md`):** mantené un único archivo compacto con: *objetivo y preferencias*, *dominado con evidencia real* (solo lo que el usuario aplicó o explicó bien, no lo meramente leído), *errores conceptuales corregidos* y *qué repasar al inicio de la próxima sesión*. Confirmá antes de cambiar el objetivo.
 - **Artefactos opcionales (solo bajo demanda):** creá `GLOSSARY.md` (agregando términos solo cuando el usuario ya los domine), recursos verificados o una guía/simulador HTML autónomo en disco únicamente si el usuario lo pide o si el entorno no tiene ayudas visuales en el chat.
-- Si una duda requiere criterio práctico fuera del estudio, respondela y, salvo que el usuario no quiera comunidades, sugerí una comunidad o espacio práctico confiable.

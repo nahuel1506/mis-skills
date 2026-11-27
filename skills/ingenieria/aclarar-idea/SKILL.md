@@ -26,7 +26,7 @@ Si la ronda es extensa, agrupala por tema con numeración única. Conservá las 
 ➡️ **Mi recomendación:** <respuesta y motivo>
 ```
 
-Planteá la pregunta antes de recomendar. Si hay opciones definidas, dales nombres cortos y explicá qué cambia con cada una para responder por letra o proponer otra. Las decisiones corresponden al usuario.
+Si hay opciones definidas, dales nombres cortos y explicá qué cambia con cada una para responder por letra o proponer otra. El usuario decide el producto, pero sin complacencia: si la idea inicial o una elección genera una contradicción, complejidad desproporcionada, un problema de UX o un hueco claro de negocio, advertilo en breve con la consecuencia concreta y una alternativa más simple antes de aceptarla (si confirma, seguí adelante).
 
 Incluí una vista visual sobria (UI visual/interactiva inline si el entorno la soporta, o Mermaid/esquema compacto) cuando aparezcan **estados con transiciones**, **relaciones entre entidades del dominio** o **dos opciones de negocio en contraste** —y al cerrar si lo acordado conecta varias reglas—. Omitila en preguntas lineales o puntuales.
 
@@ -34,4 +34,4 @@ Incluí una vista visual sobria (UI visual/interactiva inline si el entorno la s
 
 Cuando la frontera quede vacía (o el usuario quiera cerrar), resumí los acuerdos con sus condiciones, excepciones y dudas abiertas, y verificá que coincidan con lo que entendió.
 
-Antes de cerrar, **evaluá proactivamente** si surgieron términos nuevos de dominio o decisiones de negocio/arquitectura que cumplan los criterios de `modelar-dominio`; si corresponde, proponé los términos o el borrador breve del ADR y preguntá si querés guardarlos ahora (no esperes a que el usuario lo pida). Al registrar, indicá qué documentos se actualizaron y qué acuerdos quedaron en el chat. Pasá a diseñar (`disenar-solucion`), especificar (`especificar`) o implementar solo cuando el usuario lo pida.
+Antes de cerrar, **evaluá proactivamente** si surgieron términos nuevos de dominio o decisiones difíciles de revertir (`modelar-dominio`); si corresponde, proponé los términos o el borrador breve del ADR para confirmar si se guardan ahora (no esperes a que el usuario lo pida). Al registrar, indicá qué documentos se actualizaron y qué acuerdos quedaron en el chat. Pasá a diseñar (`disenar-solucion`), especificar (`especificar`) o implementar solo cuando el usuario lo pida.

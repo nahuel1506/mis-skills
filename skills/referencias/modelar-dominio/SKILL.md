@@ -14,7 +14,7 @@ Ninguno de los dos duplica detalles de implementación (clases, métodos o flujo
 
 ## Ubicación
 
-Seguí las rutas declaradas en el proyecto o en `docs/agents/domain.md` (si existe). Si hay varios contextos, consultá `GLOSSARY-MAP.md`. Por defecto: `GLOSSARY.md` y `docs/adr/` en la raíz ([GLOSSARY-FORMAT.md](GLOSSARY-FORMAT.md), [ADR-FORMAT.md](ADR-FORMAT.md)).
+Seguí las rutas declaradas en el proyecto (`AGENTS.md` si las define). Si hay varios contextos, consultá `GLOSSARY-MAP.md`. Por defecto: `GLOSSARY.md` y `docs/adr/` en la raíz ([GLOSSARY-FORMAT.md](GLOSSARY-FORMAT.md), [ADR-FORMAT.md](ADR-FORMAT.md)).
 
 ## Precisá términos y reglas
 

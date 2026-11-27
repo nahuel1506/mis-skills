@@ -1,5 +1,0 @@
-interface:
-  display_name: "Configurar repositorio"
-  short_description: Preparar un repositorio para usar estas skills
-policy:
-  allow_implicit_invocation: false

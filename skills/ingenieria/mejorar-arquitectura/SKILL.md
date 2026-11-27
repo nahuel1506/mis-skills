@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 ## 1. Delimitá y explorá sin saturar el contexto
 
-Partí del módulo, problema o alcance indicado. Si abarca todo el repo, empezá por áreas con cambios frecuentes, fricción visible o dificultad para probar. Consultá el glosario y los ADR vigentes para entender qué decisiones son deliberadas. Cuando haya que auditar múltiples módulos, delegá lecturas amplias a subagentes de solo lectura (si el entorno lo permite) para que el hilo principal reciba hallazgos con evidencia en vez de decenas de archivos crudos.
+Si el alcance abarca todo el repo, empezá por áreas con cambios frecuentes, fricción visible o dificultad para probar. Consultá el glosario y los ADR vigentes para entender qué decisiones son deliberadas. Cuando haya que auditar múltiples módulos, delegá lecturas amplias a subagentes de solo lectura (si el entorno lo permite) para que el hilo principal reciba hallazgos con evidencia en vez de decenas de archivos crudos.
 
 Buscá oportunidades reales donde una interfaz más clara oculte complejidad hoy dispersa en consumidores, donde cambiar una regla obligue a tocar varios módulos o donde probar exija acoplarse a detalles internos. Si una capa o módulo parece solo delegar, evaluá qué complejidad o acoplamiento reaparecería al quitarlo y si responde a una separación de responsabilidades deliberada del proyecto.
 

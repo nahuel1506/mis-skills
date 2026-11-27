@@ -20,4 +20,4 @@ Si el hilo actual ya acumuló mucho contexto (por ejemplo, tras una implementaci
 
 ## 3. Presentá hallazgos verificables
 
-Ordenalos por impacto dentro de cada criterio. Ubicá el problema en el diff (o el requisito faltante), explicá su consecuencia verificable y citá la norma o requisito. Separá hallazgos respaldados de comprobaciones pendientes.
+Ordenalos por impacto dentro de cada criterio. Ubicá el problema en el diff (o el requisito faltante), explicá su consecuencia verificable y citá la norma o requisito. Separá hallazgos respaldados de comprobaciones pendientes. Si no hay hallazgos con impacto real, decilo explícitamente sin rellenar con observaciones menores.

@@ -56,18 +56,24 @@ Si una skill se elimina o fusiona en el origen, borrá su carpeta local después
 
 Invocá una skill por su nombre según tu entorno (`$nombre` en Codex, `/nombre` en Claude/compatibles). Solo **4 skills** son **Auto** para mantener mínimo el contexto fijo.
 
-```text
-[QUÉ] $aclarar-idea ──► [CÓMO] $disenar-solucion ──► $especificar / $dividir-en-tareas
-                                                               │
-                                                ── sesión limpia por ticket ──
-                                                               ▼
-                                                         $implementar
-                                                  (pruebas-primero + revisar-codigo)
+```mermaid
+flowchart LR
+    A["QUÉ<br/>$aclarar-idea"] --> B["CÓMO<br/>$disenar-solucion"]
+    B <--> P["Validar hipótesis<br/>$prototipar"]
+    B --> C["$especificar /<br/>$dividir-en-tareas"]
+    C -. "sesión limpia por ticket" .-> D["$implementar<br/>(pruebas-primero + revisar-codigo)"]
 ```
 
-- **Pedido claro:** empezá directo con `$implementar`.
-- **Duda técnica o comparación de enfoques:** usá `$disenar-solucion` (y `$prototipar` si falta evidencia).
-- **Idea verde o reglas de negocio por definir:** empezá con `$aclarar-idea`.
+### Cómo elegir flujo y tipo de modelo
+
+No hace falta recorrer todo el flujo ni cambiar de modelo en cada paso: **cambiar de modelo o nivel de esfuerzo en medio de un hilo rompe el caché de contexto** y puede salir más caro que terminar con el mismo. Y delegar lógica difícil a un modelo débil suele costar más en retrabajo y bugs.
+
+| Situación | Flujo sugerido | Tipo de modelo recomendado |
+| --- | --- | --- |
+| **Pedido claro y acotado** | Directo a `$implementar` | Un solo modelo **equilibrado** (o **potente** si toca lógica delicada/arquitectura) de principio a fin, sin cambiar a mitad de camino. |
+| **Idea clara, falta definir el cómo** | `$disenar-solucion` → `$implementar` | **Máximo razonamiento** para diseñar. Si el cambio es chico, implementalo en el mismo hilo con ese modelo (aprovechás contexto y caché). Si el hilo creció mucho, abrí sesión limpia para implementar. |
+| **Idea verde o entrega grande** | `$aclarar-idea` → `$disenar-solucion` → `$especificar` / `$dividir-en-tareas` → `$implementar` | **Máximo razonamiento** para aclarar, diseñar y dividir. Después, **una sesión limpia por ticket**, eligiendo modelo según la dificultad real de ese ticket (rápido/equilibrado para cambios mecánicos o directos; potente para lógica compleja, concurrencia o arquitectura). |
+| **Bug difícil o auditoría** | `$diagnosticar-errores` / `$mejorar-arquitectura` | **Máximo razonamiento** en el hilo principal, delegando barridos amplios a subagentes de solo lectura. |
 
 ## Catálogo
 
@@ -76,7 +82,7 @@ Invocá una skill por su nombre según tu entorno (`$nombre` en Codex, `/nombre`
 | Skill | Para qué sirve | Invocación |
 | --- | --- | --- |
 | [$aclarar-idea](./skills/ingenieria/aclarar-idea/SKILL.md) | Definir **qué** construir por rondas y registrar glosario o ADR si aplica. | Manual |
-| [$disenar-solucion](./skills/ingenieria/disenar-solucion/SKILL.md) | Decidir **cómo** construir comparando alternativas y trade-offs. | Manual |
+| [$disenar-solucion](./skills/ingenieria/disenar-solucion/SKILL.md) | Decidir **cómo** construir con criterio firme sobre código real, contratos y modos de fallo. | Manual |
 | [$prototipar](./skills/ingenieria/prototipar/SKILL.md) | Resolver una duda con un experimento descartable y ejecutable. | Manual |
 | [$especificar](./skills/ingenieria/especificar/SKILL.md) | Bajar acuerdos a una spec verificable y autosuficiente. | Manual |
 | [$dividir-en-tareas](./skills/ingenieria/dividir-en-tareas/SKILL.md) | Dividir una entrega en tickets acotados para sesiones limpias. | Manual |
@@ -86,15 +92,13 @@ Invocá una skill por su nombre según tu entorno (`$nombre` en Codex, `/nombre`
 | [$diagnosticar-errores](./skills/ingenieria/diagnosticar-errores/SKILL.md) | Aislar la causa de un fallo o regresión con evidencia reproducible. | Auto |
 | [$mejorar-arquitectura](./skills/ingenieria/mejorar-arquitectura/SKILL.md) | Auditar el código para priorizar mejoras estructurales con evidencia. | Manual |
 | [$retrospectiva](./skills/ingenieria/retrospectiva/SKILL.md) | Proponer mejoras al flujo a partir de problemas observados en una sesión. | Manual |
-| [$configurar-repositorio](./skills/ingenieria/configurar-repositorio/SKILL.md) | Configurar gestor de issues, dominio y convenciones en `AGENTS.md`. | Manual |
 
-### Referencias, productividad y aprendizaje
+### Referencias y aprendizaje
 
 | Skill | Categoría | Invocación | Para qué sirve |
 | --- | --- | --- | --- |
 | [$modelar-dominio](./skills/referencias/modelar-dominio/SKILL.md) | Referencia | Auto | Fijar vocabulario del negocio (`GLOSSARY.md`) y norte de decisiones (`docs/adr/`). |
 | [$escribir-para-agentes](./skills/referencias/escribir-para-agentes/SKILL.md) | Referencia | Manual | Redactar `AGENTS.md` o skills efectivas sin ruido. |
-| [$transferir-contexto](./skills/productividad/transferir-contexto/SKILL.md) | Productividad | Manual | Preparar el traspaso a una sesión limpia entre fases o tickets. |
 | [$aprender](./skills/aprendizaje/aprender/SKILL.md) | Aprendizaje | Manual | Estudio guiado basado en evidencia y práctica directa. |
 
 <details>
@@ -108,10 +112,9 @@ Invocá una skill por su nombre según tu entorno (`$nombre` en Codex, `/nombre`
 
 </details>
 
-## Complementos útiles
+## Convenciones por repositorio
 
-- **Frontend / UX:** [Impeccable](https://impeccable.style/docs/) o [frontend-design](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md) (diseño), [Modern Web Guidance](https://developer.chrome.com/docs/modern-web-guidance) (HTML/CSS/accesibilidad) y [webapp-testing](https://github.com/anthropics/skills/blob/main/skills/webapp-testing/SKILL.md) (pruebas en navegador).
-- **`AGENTS.md` del proyecto:** definí ahí solo las convenciones clave (separación de capas, comandos de verificación, componentes reutilizables y enlace a `DESIGN.md` si existe).
+En el `AGENTS.md` de cada proyecto conviene declarar solo lo no evidente: separación de capas, comandos de verificación, componentes reutilizables y enlace a `DESIGN.md` si existe.
 
 ## Validar la colección
 
